@@ -73,5 +73,73 @@ namespace GoruntuProje
                 MessageBox.Show("Kaydedilecek işlenmiş bir resim bulunamadı. Lütfen önce bir filtre uygulayın!", "Eksik İşlem", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void renkUzayıDönüşümleriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void histogramGermeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var filter = new GoruntuProje.Filters_Dev3.HistogramGerme();
+                pictureBox2.Image = filter.ApplyFilter(new Bitmap(pictureBox1.Image));
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+
+
+
+        private void meanFiltresiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var filter = new GoruntuProje.Filters_Dev3.MeanFilter();
+                pictureBox2.Image = filter.ApplyFilter(new Bitmap(pictureBox1.Image));
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+        private void filtrelerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grayeDönüşümToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var filter = new GoruntuProje.Filters_Dev3.RenkUzayiDonusum();
+                pictureBox2.Image = filter.ApplyFilter(new Bitmap(pictureBox1.Image));
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+        private void hSVyeDönüşümToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var filter = new GoruntuProje.Filters_Dev3.RenkUzayiDonusumHSV();
+                pictureBox2.Image = filter.ApplyFilter(new Bitmap(pictureBox1.Image));
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
     }
+
 }
+    
+
