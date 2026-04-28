@@ -8,61 +8,70 @@ using System.Threading.Tasks;
 
 namespace GoruntuProje.Filters_Dev3
 {
-    // Histogram Germe (Kontrast Genişletme)
-    // Amaç: Görüntüdeki piksel değerlerini 0-255 aralığına yayarak kontrastı artırmak
+      // Histogram Germe (Kontrast Genişletme)
+      // Amaç: Görüntüdeki piksel değerlerini 0-255 aralığına yayarak kontrastı artırmak
     public class HistogramGerme : IImageFilter
     {
-        public Bitmap ApplyFilter(Bitmap input)
+        public Bitmap ApplyFilter(Bitmap girisResmi)
         {
             Bitmap cikisResmi = new Bitmap(girisResmi.Width, girisResmi.Height);
 
-            int minR = 255, minG = 255, minB = 255;
-            int maxR = 0, maxG = 0, maxB = 0;
+            // 🔹 Minimum ve maksimum değerleri bulmak için başlangıç değerleri
+            int minKirmizi = 255, minYesil = 255, minMavi = 255;
+            int maxKirmizi = 0, maxYesil = 0, maxMavi = 0;
 
-            for (int y = 0; y < input.Height; y++)
+            // 🔹 1. Aşama: Tüm görüntü taranır ve min-max değerler bulunur
+            for (int y = 0; y < girisResmi.Height; y++)
             {
-                for (int x = 0; x < input.Width; x++)
+                for (int x = 0; x < girisResmi.Width; x++)
                 {
-                    Color p = input.GetPixel(x, y);
+                    Color piksel = girisResmi.GetPixel(x, y);
 
-                    if (p.R < minR) minR = p.R;
-                    if (p.G < minG) minG = p.G;
-                    if (p.B < minB) minB = p.B;
+                    if (piksel.R < minKirmizi) minKirmizi = piksel.R;
+                    if (piksel.G < minYesil) minYesil = piksel.G;
+                    if (piksel.B < minMavi) minMavi = piksel.B;
 
-                    if (p.R > maxR) maxR = p.R;
-                    if (p.G > maxG) maxG = p.G;
-                    if (p.B > maxB) maxB = p.B;
+                    if (piksel.R > maxKirmizi) maxKirmizi = piksel.R;
+                    if (piksel.G > maxYesil) maxYesil = piksel.G;
+                    if (piksel.B > maxMavi) maxMavi = piksel.B;
                 }
             }
 
-            for (int y = 0; y < input.Height; y++)
+            // 🔹 2. Aşama: Her piksel yeni aralığa taşınır (0-255)
+            for (int y = 0; y < girisResmi.Height; y++)
             {
-                for (int x = 0; x < input.Width; x++)
+                for (int x = 0; x < girisResmi.Width; x++)
                 {
-                    Color p = input.GetPixel(x, y);
+                    Color piksel = girisResmi.GetPixel(x, y);
 
-                    int r = Stretch(p.R, minR, maxR);
-                    int g = Stretch(p.G, minG, maxG);
-                    int b = Stretch(p.B, minB, maxB);
+                    int yeniKirmizi = Germe(piksel.R, minKirmizi, maxKirmizi);
+                    int yeniYesil = Germe(piksel.G, minYesil, maxYesil);
+                    int yeniMavi = Germe(piksel.B, minMavi, maxMavi);
 
-                    output.SetPixel(x, y, Color.FromArgb(r, g, b));
+                    cikisResmi.SetPixel(x, y, Color.FromArgb(yeniKirmizi, yeniYesil, yeniMavi));
                 }
             }
 
-            return output;
+            return cikisResmi;
         }
 
-        private int Stretch(int value, int min, int max)
+        // 🔹 Histogram germe formülü uygulanır
+        // g(x) = (L-1 / (max - min)) * (f(x) - min)
+        private int Germe(int pikselDegeri, int minDeger, int maxDeger)
         {
-            if (max == min)
-                return value;
+            // Eğer tüm görüntü aynı değerdeyse (kontrast yoksa)
+            if (maxDeger == minDeger)
+                return pikselDegeri;
 
-            int result = (value - min) * 255 / (max - min);
+            // 🔸 Yeni değer hesaplanır
+            //yeni = (eski - min) * 255 / (max - min)
+            int yeniDeger = (pikselDegeri - minDeger) * 255 / (maxDeger - minDeger);
 
-            if (result < 0) return 0;
-            if (result > 255) return 255;
+            // 🔸 Taşma kontrolü (0-255 aralığında tut)
+            if (yeniDeger < 0) return 0;
+            if (yeniDeger > 255) return 255;
 
-            return result;
+            return yeniDeger;
         }
     }
 }

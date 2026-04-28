@@ -61,6 +61,8 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.grayeDönüşümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hSVyeDönüşümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -78,7 +80,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1106, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1106, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -94,14 +96,14 @@
             // resimSeçToolStripMenuItem
             // 
             this.resimSeçToolStripMenuItem.Name = "resimSeçToolStripMenuItem";
-            this.resimSeçToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
+            this.resimSeçToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.resimSeçToolStripMenuItem.Text = "Resim Seç";
             this.resimSeçToolStripMenuItem.Click += new System.EventHandler(this.resimSeçToolStripMenuItem_Click);
             // 
             // kaydetToolStripMenuItem
             // 
             this.kaydetToolStripMenuItem.Name = "kaydetToolStripMenuItem";
-            this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
+            this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.kaydetToolStripMenuItem.Text = "Kaydet";
             this.kaydetToolStripMenuItem.Click += new System.EventHandler(this.kaydetToolStripMenuItem_Click);
             // 
@@ -144,6 +146,9 @@
             // 
             // renkUzayıDönüşümleriToolStripMenuItem
             // 
+            this.renkUzayıDönüşümleriToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.grayeDönüşümToolStripMenuItem,
+            this.hSVyeDönüşümToolStripMenuItem});
             this.renkUzayıDönüşümleriToolStripMenuItem.Name = "renkUzayıDönüşümleriToolStripMenuItem";
             this.renkUzayıDönüşümleriToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.renkUzayıDönüşümleriToolStripMenuItem.Text = "Renk Uzayı Dönüşümleri";
@@ -196,6 +201,7 @@
             this.filtrelerToolStripMenuItem.Name = "filtrelerToolStripMenuItem";
             this.filtrelerToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
             this.filtrelerToolStripMenuItem.Text = "Filtreler";
+            this.filtrelerToolStripMenuItem.Click += new System.EventHandler(this.filtrelerToolStripMenuItem_Click);
             // 
             // gürültüEkleSaltPepperToolStripMenuItem
             // 
@@ -249,25 +255,25 @@
             // genişlemeToolStripMenuItem
             // 
             this.genişlemeToolStripMenuItem.Name = "genişlemeToolStripMenuItem";
-            this.genişlemeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.genişlemeToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.genişlemeToolStripMenuItem.Text = "Genişleme";
             // 
             // aşınmaToolStripMenuItem
             // 
             this.aşınmaToolStripMenuItem.Name = "aşınmaToolStripMenuItem";
-            this.aşınmaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.aşınmaToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.aşınmaToolStripMenuItem.Text = "Aşınma";
             // 
             // açmaToolStripMenuItem
             // 
             this.açmaToolStripMenuItem.Name = "açmaToolStripMenuItem";
-            this.açmaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.açmaToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.açmaToolStripMenuItem.Text = "Açma";
             // 
             // kapamaToolStripMenuItem
             // 
             this.kapamaToolStripMenuItem.Name = "kapamaToolStripMenuItem";
-            this.kapamaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.kapamaToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.kapamaToolStripMenuItem.Text = "Kapama";
             // 
             // pictureBox1
@@ -311,6 +317,20 @@
             this.label2.Size = new System.Drawing.Size(429, 46);
             this.label2.TabIndex = 3;
             this.label2.Text = "Işlem Uygulanmış Görüntü";
+            // 
+            // grayeDönüşümToolStripMenuItem
+            // 
+            this.grayeDönüşümToolStripMenuItem.Name = "grayeDönüşümToolStripMenuItem";
+            this.grayeDönüşümToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.grayeDönüşümToolStripMenuItem.Text = "Gray\'e dönüşüm";
+            this.grayeDönüşümToolStripMenuItem.Click += new System.EventHandler(this.grayeDönüşümToolStripMenuItem_Click);
+            // 
+            // hSVyeDönüşümToolStripMenuItem
+            // 
+            this.hSVyeDönüşümToolStripMenuItem.Name = "hSVyeDönüşümToolStripMenuItem";
+            this.hSVyeDönüşümToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.hSVyeDönüşümToolStripMenuItem.Text = "HSV\'ye dönüşüm";
+            this.hSVyeDönüşümToolStripMenuItem.Click += new System.EventHandler(this.hSVyeDönüşümToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -369,6 +389,8 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem grayeDönüşümToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hSVyeDönüşümToolStripMenuItem;
     }
 }
 

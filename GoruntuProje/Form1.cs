@@ -76,15 +76,7 @@ namespace GoruntuProje
 
         private void renkUzayıDönüşümleriToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (pictureBox1.Image != null)
-            {
-                var filter = new GoruntuProje.Filters_Dev3.RenkUzayiDonusum();
-                pictureBox2.Image = filter.ApplyFilter(new Bitmap(pictureBox1.Image));
-            }
-            else
-            {
-                MessageBox.Show("Lütfen önce bir resim seçin!");
-            }
+           
         }
 
         private void histogramGermeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -101,9 +93,9 @@ namespace GoruntuProje
         }
 
 
-        
-          
-private void meanFiltresiToolStripMenuItem_Click(object sender, EventArgs e)
+
+
+        private void meanFiltresiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (pictureBox1.Image != null)
             {
@@ -115,8 +107,39 @@ private void meanFiltresiToolStripMenuItem_Click(object sender, EventArgs e)
                 MessageBox.Show("Lütfen önce bir resim seçin!");
             }
         }
-    }
-           
+
+        private void filtrelerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
+
+        private void grayeDönüşümToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var filter = new GoruntuProje.Filters_Dev3.RenkUzayiDonusum();
+                pictureBox2.Image = filter.ApplyFilter(new Bitmap(pictureBox1.Image));
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+        private void hSVyeDönüşümToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var filter = new GoruntuProje.Filters_Dev3.RenkUzayiDonusumHSV();
+                pictureBox2.Image = filter.ApplyFilter(new Bitmap(pictureBox1.Image));
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+    }
+
+}
     
 

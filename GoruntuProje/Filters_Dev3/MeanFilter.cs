@@ -8,51 +8,56 @@ using System.Threading.Tasks;
 
 namespace GoruntuProje.Filters_Dev3
 {
+    // Mean Filtre (Ortalama Filtre)
+    // Amaç: Gürültüyü azaltmak ve görüntüyü yumuşatmak
     public class MeanFilter : IImageFilter
     {
-        public Bitmap ApplyFilter(Bitmap input)
+        public Bitmap ApplyFilter(Bitmap girisResmi)
         {
-            Bitmap output = new Bitmap(input.Width, input.Height);
+            Bitmap cikisResmi = new Bitmap(girisResmi.Width, girisResmi.Height);
 
-            // Kenar pikselleri aynen kopyala
-            for (int y = 0; y < input.Height; y++)
+            // 🔹 1. Kenar pikselleri aynen kopyalanır
+            // Çünkü 3x3 filtre kenarlarda tam uygulanamaz
+            for (int y = 0; y < girisResmi.Height; y++)
             {
-                for (int x = 0; x < input.Width; x++)
+                for (int x = 0; x < girisResmi.Width; x++)
                 {
-                    output.SetPixel(x, y, input.GetPixel(x, y));
+                    cikisResmi.SetPixel(x, y, girisResmi.GetPixel(x, y));
                 }
             }
 
-            // 3x3 mean filtre
-            for (int y = 1; y < input.Height - 1; y++)
+            // 🔹 2. 3x3 komşuluk üzerinde ortalama alınır
+            for (int y = 1; y < girisResmi.Height - 1; y++)
             {
-                for (int x = 1; x < input.Width - 1; x++)
+                for (int x = 1; x < girisResmi.Width - 1; x++)
                 {
-                    int sumR = 0;
-                    int sumG = 0;
-                    int sumB = 0;
+                    int toplamKirmizi = 0;
+                    int toplamYesil = 0;
+                    int toplamMavi = 0;
 
+                    // 🔸 Komşu 3x3 piksel gezilir
                     for (int j = -1; j <= 1; j++)
                     {
                         for (int i = -1; i <= 1; i++)
                         {
-                            Color p = input.GetPixel(x + i, y + j);
+                            Color komsuPiksel = girisResmi.GetPixel(x + i, y + j);
 
-                            sumR += p.R;
-                            sumG += p.G;
-                            sumB += p.B;
+                            toplamKirmizi += komsuPiksel.R;
+                            toplamYesil += komsuPiksel.G;
+                            toplamMavi += komsuPiksel.B;
                         }
                     }
 
-                    int r = sumR / 9;
-                    int g = sumG / 9;
-                    int b = sumB / 9;
+                    // 🔸 Ortalama alınır (9 piksel)
+                    int yeniKirmizi = toplamKirmizi / 9;
+                    int yeniYesil = toplamYesil / 9;
+                    int yeniMavi = toplamMavi / 9;
 
-                    output.SetPixel(x, y, Color.FromArgb(r, g, b));
+                    cikisResmi.SetPixel(x, y, Color.FromArgb(yeniKirmizi, yeniYesil, yeniMavi));
                 }
             }
 
-            return output;
+            return cikisResmi;
         }
     }
 }
