@@ -211,6 +211,71 @@ namespace GoruntuProje
             pictureBox2.Image = cikisResmi;
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
         }
+
+        private void görüntüDöndürmeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var filtre = new GoruntuProje.Filters_Dev2.GoruntuDondurme();
+                pictureBox2.Image = filtre.ApplyFilter(new Bitmap(pictureBox1.Image));
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+        private void görüntüUzaklaştırmaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var filtre = new GoruntuProje.Filters_Dev2.GoruntuUzaklastirma();
+                pictureBox2.Image = filtre.ApplyFilter(new Bitmap(pictureBox1.Image));
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+        private void görüntüYaklaştırmaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var filtre = new GoruntuProje.Filters_Dev2.GoruntuYaklastirma();
+                pictureBox2.Image = filtre.ApplyFilter(new Bitmap(pictureBox1.Image));
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+        private void medianFiltresiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var filtre = new GoruntuProje.Filters_Dev2.MedianFiltre();
+                pictureBox2.Image = filtre.ApplyFilter(new Bitmap(pictureBox1.Image));
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+        private void gürültüEkleSaltPepperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var filtre = new GoruntuProje.Filters_Dev2.GurultuEkleme();
+                pictureBox2.Image = filtre.ApplyFilter(new Bitmap(pictureBox1.Image));
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
     }
 
 }
