@@ -38,6 +38,8 @@
             this.binaryDönüşümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eşiklemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renkUzayıDönüşümleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grayeDönüşümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hSVyeDönüşümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramGermeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geometrikİşlemlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.görüntüKırpmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,8 +63,6 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.grayeDönüşümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hSVyeDönüşümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -96,14 +96,14 @@
             // resimSeçToolStripMenuItem
             // 
             this.resimSeçToolStripMenuItem.Name = "resimSeçToolStripMenuItem";
-            this.resimSeçToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.resimSeçToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
             this.resimSeçToolStripMenuItem.Text = "Resim Seç";
             this.resimSeçToolStripMenuItem.Click += new System.EventHandler(this.resimSeçToolStripMenuItem_Click);
             // 
             // kaydetToolStripMenuItem
             // 
             this.kaydetToolStripMenuItem.Name = "kaydetToolStripMenuItem";
-            this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
             this.kaydetToolStripMenuItem.Text = "Kaydet";
             this.kaydetToolStripMenuItem.Click += new System.EventHandler(this.kaydetToolStripMenuItem_Click);
             // 
@@ -125,12 +125,14 @@
             this.griDönüşümToolStripMenuItem.Name = "griDönüşümToolStripMenuItem";
             this.griDönüşümToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.griDönüşümToolStripMenuItem.Text = "Gri Dönüşüm";
+            this.griDönüşümToolStripMenuItem.Click += new System.EventHandler(this.griDönüşümToolStripMenuItem_Click);
             // 
             // kontrastArtırmaToolStripMenuItem
             // 
             this.kontrastArtırmaToolStripMenuItem.Name = "kontrastArtırmaToolStripMenuItem";
             this.kontrastArtırmaToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.kontrastArtırmaToolStripMenuItem.Text = "Kontrast Artırma";
+            this.kontrastArtırmaToolStripMenuItem.Click += new System.EventHandler(this.kontrastArtırmaToolStripMenuItem_Click);
             // 
             // binaryDönüşümToolStripMenuItem
             // 
@@ -153,6 +155,20 @@
             this.renkUzayıDönüşümleriToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.renkUzayıDönüşümleriToolStripMenuItem.Text = "Renk Uzayı Dönüşümleri";
             this.renkUzayıDönüşümleriToolStripMenuItem.Click += new System.EventHandler(this.renkUzayıDönüşümleriToolStripMenuItem_Click);
+            // 
+            // grayeDönüşümToolStripMenuItem
+            // 
+            this.grayeDönüşümToolStripMenuItem.Name = "grayeDönüşümToolStripMenuItem";
+            this.grayeDönüşümToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.grayeDönüşümToolStripMenuItem.Text = "Gray\'e dönüşüm";
+            this.grayeDönüşümToolStripMenuItem.Click += new System.EventHandler(this.grayeDönüşümToolStripMenuItem_Click);
+            // 
+            // hSVyeDönüşümToolStripMenuItem
+            // 
+            this.hSVyeDönüşümToolStripMenuItem.Name = "hSVyeDönüşümToolStripMenuItem";
+            this.hSVyeDönüşümToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.hSVyeDönüşümToolStripMenuItem.Text = "HSV\'ye dönüşüm";
+            this.hSVyeDönüşümToolStripMenuItem.Click += new System.EventHandler(this.hSVyeDönüşümToolStripMenuItem_Click);
             // 
             // histogramGermeToolStripMenuItem
             // 
@@ -234,6 +250,7 @@
             this.kenarBulmaPrewittToolStripMenuItem.Name = "kenarBulmaPrewittToolStripMenuItem";
             this.kenarBulmaPrewittToolStripMenuItem.Size = new System.Drawing.Size(256, 26);
             this.kenarBulmaPrewittToolStripMenuItem.Text = "Kenar Bulma (Prewitt)";
+            this.kenarBulmaPrewittToolStripMenuItem.Click += new System.EventHandler(this.kenarBulmaPrewittToolStripMenuItem_Click);
             // 
             // aritmetikİşlemlerToolStripMenuItem
             // 
@@ -317,20 +334,6 @@
             this.label2.Size = new System.Drawing.Size(429, 46);
             this.label2.TabIndex = 3;
             this.label2.Text = "Işlem Uygulanmış Görüntü";
-            // 
-            // grayeDönüşümToolStripMenuItem
-            // 
-            this.grayeDönüşümToolStripMenuItem.Name = "grayeDönüşümToolStripMenuItem";
-            this.grayeDönüşümToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.grayeDönüşümToolStripMenuItem.Text = "Gray\'e dönüşüm";
-            this.grayeDönüşümToolStripMenuItem.Click += new System.EventHandler(this.grayeDönüşümToolStripMenuItem_Click);
-            // 
-            // hSVyeDönüşümToolStripMenuItem
-            // 
-            this.hSVyeDönüşümToolStripMenuItem.Name = "hSVyeDönüşümToolStripMenuItem";
-            this.hSVyeDönüşümToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.hSVyeDönüşümToolStripMenuItem.Text = "HSV\'ye dönüşüm";
-            this.hSVyeDönüşümToolStripMenuItem.Click += new System.EventHandler(this.hSVyeDönüşümToolStripMenuItem_Click);
             // 
             // Form1
             // 

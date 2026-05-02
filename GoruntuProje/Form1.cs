@@ -138,6 +138,31 @@ namespace GoruntuProje
                 MessageBox.Show("Lütfen önce bir resim seçin!");
             }
         }
+
+        private void griDönüşümToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var filter = new GoruntuProje.Filters_Dev1.GriDonusum();
+                pictureBox2.Image = filter.ApplyFilter(new Bitmap(pictureBox1.Image));
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+        private void kontrastArtırmaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var filter = new GoruntuProje.Filters_Dev1.KontrastArtirma();
+            pictureBox2.Image = filter.ApplyFilter(new Bitmap(pictureBox1.Image));
+        }
+
+        private void kenarBulmaPrewittToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var filter = new GoruntuProje.Filters_Dev1.KenarBulmaPrewitt();
+            pictureBox2.Image = filter.ApplyFilter(new Bitmap(pictureBox1.Image));
+        }
     }
 
 }
