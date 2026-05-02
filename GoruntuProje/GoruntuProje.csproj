@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\IImageFilter.cs" />
+    <Compile Include="Filters_Dev1\GriDonusum.cs" />
+    <Compile Include="Filters_Dev1\KenarBulmaPrewitt.cs" />
+    <Compile Include="Filters_Dev1\KontrastArtırma.cs" />
     <Compile Include="Filters_Dev3\HistogramGerme.cs" />
     <Compile Include="Filters_Dev3\MeanFilter.cs" />
     <Compile Include="Filters_Dev3\RenkUzayiDonusum.cs" />
@@ -89,7 +92,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Filters_Dev1\" />
     <Folder Include="Filters_Dev2\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
