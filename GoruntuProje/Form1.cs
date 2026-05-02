@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoruntuProje.Filters_Dev4;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -137,6 +138,78 @@ namespace GoruntuProje
             {
                 MessageBox.Show("Lütfen önce bir resim seçin!");
             }
+        }
+
+        private void binaryDönüşümToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null)
+            {
+                MessageBox.Show("Lütfen önce bir görüntü yükleyiniz.");
+                return;
+            }
+
+            Bitmap girisResmi = new Bitmap(pictureBox1.Image);
+
+            BinaryDonusum binaryDonusum = new BinaryDonusum();
+
+            Bitmap cikisResmi = binaryDonusum.ApplyFilter(girisResmi);
+
+            pictureBox2.Image = cikisResmi;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void eşiklemeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null)
+            {
+                MessageBox.Show("Lütfen önce bir görüntü yükleyiniz.");
+                return;
+            }
+
+            Bitmap girisResmi = new Bitmap(pictureBox1.Image);
+
+            TekEsikleme tekEsikleme = new TekEsikleme();
+
+            Bitmap cikisResmi = tekEsikleme.ApplyFilter(girisResmi);
+
+            pictureBox2.Image = cikisResmi;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void eklemeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null)
+            {
+                MessageBox.Show("Lütfen önce bir görüntü yükleyiniz.");
+                return;
+            }
+
+            Bitmap girisResmi = new Bitmap(pictureBox1.Image);
+
+            EklemeIslemi eklemeIslemi = new EklemeIslemi();
+
+            Bitmap cikisResmi = eklemeIslemi.ApplyFilter(girisResmi);
+
+            pictureBox2.Image = cikisResmi;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void bolmeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null)
+            {
+                MessageBox.Show("Lütfen önce bir görüntü yükleyiniz.");
+                return;
+            }
+
+            Bitmap girisResmi = new Bitmap(pictureBox1.Image);
+
+            BolmeIslemi bolmeIslemi = new BolmeIslemi();
+
+            Bitmap cikisResmi = bolmeIslemi.ApplyFilter(girisResmi);
+
+            pictureBox2.Image = cikisResmi;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
         }
     }
 

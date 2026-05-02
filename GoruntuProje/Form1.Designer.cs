@@ -38,6 +38,8 @@
             this.binaryDönüşümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eşiklemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renkUzayıDönüşümleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grayeDönüşümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hSVyeDönüşümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramGermeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geometrikİşlemlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.görüntüKırpmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,8 +63,8 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.grayeDönüşümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hSVyeDönüşümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eklemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bolmeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -137,12 +139,14 @@
             this.binaryDönüşümToolStripMenuItem.Name = "binaryDönüşümToolStripMenuItem";
             this.binaryDönüşümToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.binaryDönüşümToolStripMenuItem.Text = "Binary Dönüşüm";
+            this.binaryDönüşümToolStripMenuItem.Click += new System.EventHandler(this.binaryDönüşümToolStripMenuItem_Click);
             // 
             // eşiklemeToolStripMenuItem
             // 
             this.eşiklemeToolStripMenuItem.Name = "eşiklemeToolStripMenuItem";
             this.eşiklemeToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.eşiklemeToolStripMenuItem.Text = "Eşikleme";
+            this.eşiklemeToolStripMenuItem.Click += new System.EventHandler(this.eşiklemeToolStripMenuItem_Click);
             // 
             // renkUzayıDönüşümleriToolStripMenuItem
             // 
@@ -153,6 +157,20 @@
             this.renkUzayıDönüşümleriToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.renkUzayıDönüşümleriToolStripMenuItem.Text = "Renk Uzayı Dönüşümleri";
             this.renkUzayıDönüşümleriToolStripMenuItem.Click += new System.EventHandler(this.renkUzayıDönüşümleriToolStripMenuItem_Click);
+            // 
+            // grayeDönüşümToolStripMenuItem
+            // 
+            this.grayeDönüşümToolStripMenuItem.Name = "grayeDönüşümToolStripMenuItem";
+            this.grayeDönüşümToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.grayeDönüşümToolStripMenuItem.Text = "Gray\'e dönüşüm";
+            this.grayeDönüşümToolStripMenuItem.Click += new System.EventHandler(this.grayeDönüşümToolStripMenuItem_Click);
+            // 
+            // hSVyeDönüşümToolStripMenuItem
+            // 
+            this.hSVyeDönüşümToolStripMenuItem.Name = "hSVyeDönüşümToolStripMenuItem";
+            this.hSVyeDönüşümToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.hSVyeDönüşümToolStripMenuItem.Text = "HSV\'ye dönüşüm";
+            this.hSVyeDönüşümToolStripMenuItem.Click += new System.EventHandler(this.hSVyeDönüşümToolStripMenuItem_Click);
             // 
             // histogramGermeToolStripMenuItem
             // 
@@ -237,6 +255,9 @@
             // 
             // aritmetikİşlemlerToolStripMenuItem
             // 
+            this.aritmetikİşlemlerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eklemeToolStripMenuItem,
+            this.bolmeToolStripMenuItem});
             this.aritmetikİşlemlerToolStripMenuItem.Name = "aritmetikİşlemlerToolStripMenuItem";
             this.aritmetikİşlemlerToolStripMenuItem.Size = new System.Drawing.Size(256, 26);
             this.aritmetikİşlemlerToolStripMenuItem.Text = "Aritmetik İşlemler";
@@ -255,25 +276,25 @@
             // genişlemeToolStripMenuItem
             // 
             this.genişlemeToolStripMenuItem.Name = "genişlemeToolStripMenuItem";
-            this.genişlemeToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            this.genişlemeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.genişlemeToolStripMenuItem.Text = "Genişleme";
             // 
             // aşınmaToolStripMenuItem
             // 
             this.aşınmaToolStripMenuItem.Name = "aşınmaToolStripMenuItem";
-            this.aşınmaToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            this.aşınmaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.aşınmaToolStripMenuItem.Text = "Aşınma";
             // 
             // açmaToolStripMenuItem
             // 
             this.açmaToolStripMenuItem.Name = "açmaToolStripMenuItem";
-            this.açmaToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            this.açmaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.açmaToolStripMenuItem.Text = "Açma";
             // 
             // kapamaToolStripMenuItem
             // 
             this.kapamaToolStripMenuItem.Name = "kapamaToolStripMenuItem";
-            this.kapamaToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            this.kapamaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.kapamaToolStripMenuItem.Text = "Kapama";
             // 
             // pictureBox1
@@ -318,19 +339,19 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Işlem Uygulanmış Görüntü";
             // 
-            // grayeDönüşümToolStripMenuItem
+            // eklemeToolStripMenuItem
             // 
-            this.grayeDönüşümToolStripMenuItem.Name = "grayeDönüşümToolStripMenuItem";
-            this.grayeDönüşümToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.grayeDönüşümToolStripMenuItem.Text = "Gray\'e dönüşüm";
-            this.grayeDönüşümToolStripMenuItem.Click += new System.EventHandler(this.grayeDönüşümToolStripMenuItem_Click);
+            this.eklemeToolStripMenuItem.Name = "eklemeToolStripMenuItem";
+            this.eklemeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.eklemeToolStripMenuItem.Text = "ekleme";
+            this.eklemeToolStripMenuItem.Click += new System.EventHandler(this.eklemeToolStripMenuItem_Click);
             // 
-            // hSVyeDönüşümToolStripMenuItem
+            // bolmeToolStripMenuItem
             // 
-            this.hSVyeDönüşümToolStripMenuItem.Name = "hSVyeDönüşümToolStripMenuItem";
-            this.hSVyeDönüşümToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.hSVyeDönüşümToolStripMenuItem.Text = "HSV\'ye dönüşüm";
-            this.hSVyeDönüşümToolStripMenuItem.Click += new System.EventHandler(this.hSVyeDönüşümToolStripMenuItem_Click);
+            this.bolmeToolStripMenuItem.Name = "bolmeToolStripMenuItem";
+            this.bolmeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.bolmeToolStripMenuItem.Text = "bolme";
+            this.bolmeToolStripMenuItem.Click += new System.EventHandler(this.bolmeToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -391,6 +412,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem grayeDönüşümToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hSVyeDönüşümToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eklemeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bolmeToolStripMenuItem;
     }
 }
 
