@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using GoruntuProje.Core;
 
 namespace GoruntuProje.Filters_Dev1
@@ -7,6 +8,10 @@ namespace GoruntuProje.Filters_Dev1
     {
         public Bitmap ApplyFilter(Bitmap inputImage)
         {
+            
+            if (inputImage == null)
+                throw new ArgumentNullException(nameof(inputImage));
+
             int genislik = inputImage.Width;
             int yukseklik = inputImage.Height;
 
@@ -16,11 +21,14 @@ namespace GoruntuProje.Filters_Dev1
             {
                 for (int y = 0; y < yukseklik; y++)
                 {
-                    Color piksel = inputImage.GetPixel(x, y); // Giriş görüntüdeki pikselin konumunu belirledik 
+                    // Giriş görüntüdeki pikselin konumunu belirledik
+                    Color piksel = inputImage.GetPixel(x, y);
 
-                    int gri = (piksel.R + piksel.G + piksel.B) / 3;  //RGB değerlerinin ortalamasını alarak gri ton elde ettim
+                    // RGB değerlerini ağırlıklı ortalama ile gri tona çevirdik (daha doğru yöntem)
+                    int gri = (int)(0.3 * piksel.R + 0.59 * piksel.G + 0.11 * piksel.B);
 
-                    cikisGoruntu.SetPixel(x, y, Color.FromArgb(gri, gri, gri));  // Pikseli gri renge çevirip yeni görüntüye yerleştiriyoruz
+                    // Pikseli gri renge çevirip yeni görüntüye yerleştiriyoruz
+                    cikisGoruntu.SetPixel(x, y, Color.FromArgb(gri, gri, gri));
                 }
             }
 

@@ -9,14 +9,17 @@ namespace GoruntuProje.Filters_Dev1
     {
         public Bitmap ApplyFilter(Bitmap inputImage)
         {
+         
+            if (inputImage == null)
+                throw new ArgumentNullException(nameof(inputImage));
+
             int genislik = inputImage.Width;
             int yukseklik = inputImage.Height;
 
-            Bitmap cikis = new Bitmap(genislik, yukseklik);
+            Bitmap cikisGoruntu = new Bitmap(genislik, yukseklik);
 
-            //Kontrast artırma, piksel değerleri arasındaki farkı büyütmektir
-
-            double faktor = 1.5; // kontrast gücü (1 = değişmez) ancak 1 den büyük olunca kontrast artırılır 
+            // Kontrast artırma, piksel değerleri arasındaki farkı büyütmektir
+            double faktor = 1.5; // kontrast gücü (1 = değişmez)
 
             for (int x = 0; x < genislik; x++)
             {
@@ -27,7 +30,7 @@ namespace GoruntuProje.Filters_Dev1
                     /* Pikselin kontrastını artırmak için RGB değerlerini merkeze göre genişletiyoruz
                        128 değeri orta nokta olduğu için (0-255), kontrast artırmada referans olarak kullanılır
                        128’e göre uzaklaştırarak kontrastı artırıyoruz
-                       128 sabit noktadır, kontrast işleminde değişmez  */
+                       128 sabit noktadır, kontrast işleminde değişmez */
 
                     int r = (int)((piksel.R - 128) * faktor + 128);
                     int g = (int)((piksel.G - 128) * faktor + 128);
@@ -38,11 +41,12 @@ namespace GoruntuProje.Filters_Dev1
                     g = Math.Max(0, Math.Min(255, g));
                     b = Math.Max(0, Math.Min(255, b));
 
-                    cikis.SetPixel(x, y, Color.FromArgb(r, g, b));
+                    Color yeniRenk = Color.FromArgb(r, g, b);
+                    cikisGoruntu.SetPixel(x, y, yeniRenk);
                 }
             }
 
-            return cikis;
+            return cikisGoruntu;
         }
     }
 }
