@@ -128,12 +128,14 @@
             this.griDönüşümToolStripMenuItem.Name = "griDönüşümToolStripMenuItem";
             this.griDönüşümToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.griDönüşümToolStripMenuItem.Text = "Gri Dönüşüm";
+            this.griDönüşümToolStripMenuItem.Click += new System.EventHandler(this.griDönüşümToolStripMenuItem_Click);
             // 
             // kontrastArtırmaToolStripMenuItem
             // 
             this.kontrastArtırmaToolStripMenuItem.Name = "kontrastArtırmaToolStripMenuItem";
             this.kontrastArtırmaToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.kontrastArtırmaToolStripMenuItem.Text = "Kontrast Artırma";
+            this.kontrastArtırmaToolStripMenuItem.Click += new System.EventHandler(this.kontrastArtırmaToolStripMenuItem_Click);
             // 
             // binaryDönüşümToolStripMenuItem
             // 
@@ -265,6 +267,7 @@
             this.kenarBulmaPrewittToolStripMenuItem.Name = "kenarBulmaPrewittToolStripMenuItem";
             this.kenarBulmaPrewittToolStripMenuItem.Size = new System.Drawing.Size(256, 26);
             this.kenarBulmaPrewittToolStripMenuItem.Text = "Kenar Bulma (Prewitt)";
+            this.kenarBulmaPrewittToolStripMenuItem.Click += new System.EventHandler(this.kenarBulmaPrewittToolStripMenuItem_Click);
             // 
             // aritmetikİşlemlerToolStripMenuItem
             // 
