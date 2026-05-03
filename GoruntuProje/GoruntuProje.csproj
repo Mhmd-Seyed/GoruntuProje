@@ -62,6 +62,11 @@
     <Compile Include="Filters_Dev4\BolmeIslemi.cs" />
     <Compile Include="Filters_Dev4\EklemeIslemi.cs" />
     <Compile Include="Filters_Dev4\Esikleme.cs" />
+    <Compile Include="Filters_Leader\AcmaFiltresi.cs" />
+    <Compile Include="Filters_Leader\AsinmaFiltresi.cs" />
+    <Compile Include="Filters_Leader\GenislemeFiltresi.cs" />
+    <Compile Include="Filters_Leader\KapamaFiltresi.cs" />
+    <Compile Include="Filters_Leader\KirpmaFiltresi.cs" />
     <Compile Include="Filters_Leader\UnsharpFiltresi.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

@@ -315,6 +315,82 @@ namespace GoruntuProje
                 MessageBox.Show("Lütfen önce bir resim seçin!");
             }
         }
+
+        private void genişlemeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Öncelikle programa yüklenmiş bir görüntü olduğundan emin ol
+            if (pictureBox1.Image != null)
+            {
+                // 1. Orijinal görüntünün bir kopyasını (Bitmap) al
+                Bitmap kaynak = new Bitmap(pictureBox1.Image);
+
+                // 2. Liderin klasöründen Genişleme (Dilation) filtresini çağır
+                GoruntuProje.Filters_Leader.GenislemeFiltresi genisleme = new GoruntuProje.Filters_Leader.GenislemeFiltresi();
+
+                // 3. Filtreyi uygula ve sonucu PictureBox2'de (İşlenmiş Görüntü) göster
+                pictureBox2.Image = genisleme.ApplyFilter(kaynak);
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+        private void aşınmaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                Bitmap kaynak = new Bitmap(pictureBox1.Image);
+                GoruntuProje.Filters_Leader.AsinmaFiltresi asinma = new GoruntuProje.Filters_Leader.AsinmaFiltresi();
+                pictureBox2.Image = asinma.ApplyFilter(kaynak);
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+        private void açmaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                Bitmap kaynak = new Bitmap(pictureBox1.Image);
+                GoruntuProje.Filters_Leader.AcmaFiltresi acma = new GoruntuProje.Filters_Leader.AcmaFiltresi();
+                pictureBox2.Image = acma.ApplyFilter(kaynak);
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+        private void kapamaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                Bitmap kaynak = new Bitmap(pictureBox1.Image);
+                GoruntuProje.Filters_Leader.KapamaFiltresi kapama = new GoruntuProje.Filters_Leader.KapamaFiltresi();
+                pictureBox2.Image = kapama.ApplyFilter(kaynak);
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
+
+        private void görüntüKırpmaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                Bitmap kaynak = new Bitmap(pictureBox1.Image);
+                GoruntuProje.Filters_Leader.KirpmaFiltresi kirpma = new GoruntuProje.Filters_Leader.KirpmaFiltresi();
+                pictureBox2.Image = kirpma.ApplyFilter(kaynak);
+            }
+            else
+            {
+                MessageBox.Show("Lütfen önce bir resim seçin!");
+            }
+        }
     }
 
 }
