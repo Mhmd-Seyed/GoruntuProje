@@ -66,9 +66,13 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBoxHistOrijinal = new System.Windows.Forms.PictureBox();
+            this.pictureBoxHistSonuc = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistOrijinal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistSonuc)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -82,8 +86,8 @@
             this.morfolojikİşlemlerToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(968, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1106, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -93,20 +97,20 @@
             this.resimSeçToolStripMenuItem,
             this.kaydetToolStripMenuItem});
             this.dosyaToolStripMenuItem.Name = "dosyaToolStripMenuItem";
-            this.dosyaToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.dosyaToolStripMenuItem.Size = new System.Drawing.Size(64, 26);
             this.dosyaToolStripMenuItem.Text = "Dosya";
             // 
             // resimSeçToolStripMenuItem
             // 
             this.resimSeçToolStripMenuItem.Name = "resimSeçToolStripMenuItem";
-            this.resimSeçToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.resimSeçToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
             this.resimSeçToolStripMenuItem.Text = "Resim Seç";
             this.resimSeçToolStripMenuItem.Click += new System.EventHandler(this.resimSeçToolStripMenuItem_Click);
             // 
             // kaydetToolStripMenuItem
             // 
             this.kaydetToolStripMenuItem.Name = "kaydetToolStripMenuItem";
-            this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
             this.kaydetToolStripMenuItem.Text = "Kaydet";
             this.kaydetToolStripMenuItem.Click += new System.EventHandler(this.kaydetToolStripMenuItem_Click);
             // 
@@ -120,7 +124,7 @@
             this.renkUzayıDönüşümleriToolStripMenuItem,
             this.histogramGermeToolStripMenuItem});
             this.noktasalİşlemlerToolStripMenuItem.Name = "noktasalİşlemlerToolStripMenuItem";
-            this.noktasalİşlemlerToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
+            this.noktasalİşlemlerToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.noktasalİşlemlerToolStripMenuItem.Text = "Noktasal İşlemler";
             // 
             // griDönüşümToolStripMenuItem
@@ -190,7 +194,7 @@
             this.görüntüYaklaştırmaToolStripMenuItem,
             this.görüntüUzaklaştırmaToolStripMenuItem});
             this.geometrikİşlemlerToolStripMenuItem.Name = "geometrikİşlemlerToolStripMenuItem";
-            this.geometrikİşlemlerToolStripMenuItem.Size = new System.Drawing.Size(148, 24);
+            this.geometrikİşlemlerToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.geometrikİşlemlerToolStripMenuItem.Text = "Geometrik İşlemler";
             // 
             // görüntüKırpmaToolStripMenuItem
@@ -231,7 +235,7 @@
             this.kenarBulmaPrewittToolStripMenuItem,
             this.aritmetikİşlemlerToolStripMenuItem});
             this.filtrelerToolStripMenuItem.Name = "filtrelerToolStripMenuItem";
-            this.filtrelerToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
+            this.filtrelerToolStripMenuItem.Size = new System.Drawing.Size(73, 26);
             this.filtrelerToolStripMenuItem.Text = "Filtreler";
             this.filtrelerToolStripMenuItem.Click += new System.EventHandler(this.filtrelerToolStripMenuItem_Click);
             // 
@@ -301,43 +305,43 @@
             this.açmaToolStripMenuItem,
             this.kapamaToolStripMenuItem});
             this.morfolojikİşlemlerToolStripMenuItem.Name = "morfolojikİşlemlerToolStripMenuItem";
-            this.morfolojikİşlemlerToolStripMenuItem.Size = new System.Drawing.Size(148, 24);
+            this.morfolojikİşlemlerToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.morfolojikİşlemlerToolStripMenuItem.Text = "Morfolojik İşlemler";
             // 
             // genişlemeToolStripMenuItem
             // 
             this.genişlemeToolStripMenuItem.Name = "genişlemeToolStripMenuItem";
-            this.genişlemeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.genişlemeToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.genişlemeToolStripMenuItem.Text = "Genişleme";
             this.genişlemeToolStripMenuItem.Click += new System.EventHandler(this.genişlemeToolStripMenuItem_Click);
             // 
             // aşınmaToolStripMenuItem
             // 
             this.aşınmaToolStripMenuItem.Name = "aşınmaToolStripMenuItem";
-            this.aşınmaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.aşınmaToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.aşınmaToolStripMenuItem.Text = "Aşınma";
             this.aşınmaToolStripMenuItem.Click += new System.EventHandler(this.aşınmaToolStripMenuItem_Click);
             // 
             // açmaToolStripMenuItem
             // 
             this.açmaToolStripMenuItem.Name = "açmaToolStripMenuItem";
-            this.açmaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.açmaToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.açmaToolStripMenuItem.Text = "Açma";
             this.açmaToolStripMenuItem.Click += new System.EventHandler(this.açmaToolStripMenuItem_Click);
             // 
             // kapamaToolStripMenuItem
             // 
             this.kapamaToolStripMenuItem.Name = "kapamaToolStripMenuItem";
-            this.kapamaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.kapamaToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.kapamaToolStripMenuItem.Text = "Kapama";
             this.kapamaToolStripMenuItem.Click += new System.EventHandler(this.kapamaToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(34, 120);
+            this.pictureBox1.Location = new System.Drawing.Point(39, 98);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(400, 400);
+            this.pictureBox1.Size = new System.Drawing.Size(457, 400);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -345,9 +349,9 @@
             // pictureBox2
             // 
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(492, 120);
+            this.pictureBox2.Location = new System.Drawing.Point(566, 98);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(400, 400);
+            this.pictureBox2.Size = new System.Drawing.Size(457, 400);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
@@ -359,26 +363,44 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(121, 49);
+            this.label1.Location = new System.Drawing.Point(138, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(220, 46);
+            this.label1.Size = new System.Drawing.Size(251, 46);
             this.label1.TabIndex = 3;
             this.label1.Text = "Orjinal Görüntü";
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(499, 49);
+            this.label2.Location = new System.Drawing.Point(570, 49);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(375, 46);
+            this.label2.Size = new System.Drawing.Size(429, 46);
             this.label2.TabIndex = 3;
             this.label2.Text = "Işlem Uygulanmış Görüntü";
             // 
+            // pictureBoxHistOrijinal
+            // 
+            this.pictureBoxHistOrijinal.Location = new System.Drawing.Point(129, 517);
+            this.pictureBoxHistOrijinal.Name = "pictureBoxHistOrijinal";
+            this.pictureBoxHistOrijinal.Size = new System.Drawing.Size(260, 65);
+            this.pictureBoxHistOrijinal.TabIndex = 4;
+            this.pictureBoxHistOrijinal.TabStop = false;
+            // 
+            // pictureBoxHistSonuc
+            // 
+            this.pictureBoxHistSonuc.Location = new System.Drawing.Point(654, 517);
+            this.pictureBoxHistSonuc.Name = "pictureBoxHistSonuc";
+            this.pictureBoxHistSonuc.Size = new System.Drawing.Size(260, 65);
+            this.pictureBoxHistSonuc.TabIndex = 4;
+            this.pictureBoxHistSonuc.TabStop = false;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(968, 550);
+            this.ClientSize = new System.Drawing.Size(1106, 594);
+            this.Controls.Add(this.pictureBoxHistSonuc);
+            this.Controls.Add(this.pictureBoxHistOrijinal);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
@@ -391,6 +413,8 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistOrijinal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistSonuc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,6 +460,8 @@
         private System.Windows.Forms.ToolStripMenuItem eklemeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bolmeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem görüntüUzaklaştırmaToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBoxHistOrijinal;
+        private System.Windows.Forms.PictureBox pictureBoxHistSonuc;
     }
 }
 

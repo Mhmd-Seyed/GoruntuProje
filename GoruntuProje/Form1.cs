@@ -17,6 +17,33 @@ namespace GoruntuProje
         {
             InitializeComponent();
         }
+        private Bitmap HistogramCiz(int[] histogram, int genislik, int yukseklik)
+        {
+            Bitmap bmp = new Bitmap(genislik, yukseklik);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.Clear(Color.White);
+
+                int max = histogram.Max();
+
+                for (int i = 0; i < 256; i++)
+                {
+                    int h = (int)((histogram[i] / (double)max) * yukseklik);
+                    int x = i * genislik / 256;
+
+                    g.DrawLine(Pens.Black, x, yukseklik, x, yukseklik - h);
+                }
+            }
+
+            return bmp;
+        }
+
+        private void HistogramGoster(bool goster)
+        {
+            pictureBoxHistOrijinal.Visible = goster;
+            pictureBoxHistSonuc.Visible = goster;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -33,6 +60,7 @@ namespace GoruntuProje
 
         private void unsharpFiltresiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             // İşlem yapılacak resmin varlığını kontrol et
             if (pictureBox1.Image != null)
             {
@@ -84,12 +112,27 @@ namespace GoruntuProje
         {
             if (pictureBox1.Image != null)
             {
-                var filter = new GoruntuProje.Filters_Dev3.HistogramGerme();
-                pictureBox2.Image = filter.ApplyFilter(new Bitmap(pictureBox1.Image));
-            }
-            else
-            {
-                MessageBox.Show("Lütfen önce bir resim seçin!");
+                Bitmap orijinal = new Bitmap(pictureBox1.Image);
+
+                var filtre = new GoruntuProje.Filters_Dev3.HistogramGerme();
+                HistogramGoster(true);
+
+                Bitmap sonuc = filtre.ApplyFilter(orijinal);
+
+                pictureBox2.Image = sonuc;
+
+                // 🔥 Histogramları al (artık filtreden geliyor)
+                int[] histOrijinal = filtre.HistogramHesapla(orijinal);
+                int[] histSonuc = filtre.HistogramHesapla(sonuc);
+
+                // 🔥 Çiz
+                pictureBoxHistOrijinal.Image = HistogramCiz(histOrijinal,
+                    pictureBoxHistOrijinal.Width,
+                    pictureBoxHistOrijinal.Height);
+
+                pictureBoxHistSonuc.Image = HistogramCiz(histSonuc,
+                    pictureBoxHistSonuc.Width,
+                    pictureBoxHistSonuc.Height);
             }
         }
 
@@ -98,6 +141,7 @@ namespace GoruntuProje
 
         private void meanFiltresiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 var filter = new GoruntuProje.Filters_Dev3.MeanFilter();
@@ -116,6 +160,7 @@ namespace GoruntuProje
 
         private void grayeDönüşümToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 var filter = new GoruntuProje.Filters_Dev3.RenkUzayiDonusum();
@@ -129,6 +174,7 @@ namespace GoruntuProje
 
         private void hSVyeDönüşümToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 var filter = new GoruntuProje.Filters_Dev3.RenkUzayiDonusumHSV();
@@ -142,6 +188,7 @@ namespace GoruntuProje
 
         private void binaryDönüşümToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image == null)
             {
                 MessageBox.Show("Lütfen önce bir görüntü yükleyiniz.");
@@ -160,6 +207,7 @@ namespace GoruntuProje
 
         private void eşiklemeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image == null)
             {
                 MessageBox.Show("Lütfen önce bir görüntü yükleyiniz.");
@@ -178,6 +226,7 @@ namespace GoruntuProje
 
         private void eklemeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image == null)
             {
                 MessageBox.Show("Lütfen önce bir görüntü yükleyiniz.");
@@ -196,6 +245,7 @@ namespace GoruntuProje
 
         private void bolmeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image == null)
             {
                 MessageBox.Show("Lütfen önce bir görüntü yükleyiniz.");
@@ -214,6 +264,7 @@ namespace GoruntuProje
 
         private void görüntüDöndürmeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 var filtre = new GoruntuProje.Filters_Dev2.GoruntuDondurme();
@@ -227,6 +278,7 @@ namespace GoruntuProje
 
         private void görüntüUzaklaştırmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 var filtre = new GoruntuProje.Filters_Dev2.GoruntuUzaklastirma();
@@ -240,6 +292,7 @@ namespace GoruntuProje
 
         private void görüntüYaklaştırmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 var filtre = new GoruntuProje.Filters_Dev2.GoruntuYaklastirma();
@@ -253,6 +306,7 @@ namespace GoruntuProje
 
         private void medianFiltresiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 var filtre = new GoruntuProje.Filters_Dev2.MedianFiltre();
@@ -266,6 +320,7 @@ namespace GoruntuProje
 
         private void gürültüEkleSaltPepperToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 var filtre = new GoruntuProje.Filters_Dev2.GurultuEkleme();
@@ -279,6 +334,7 @@ namespace GoruntuProje
 
         private void griDönüşümToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 var filtre = new GoruntuProje.Filters_Dev1.GriDonusum();
@@ -292,6 +348,7 @@ namespace GoruntuProje
 
         private void kontrastArtırmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 var filtre = new GoruntuProje.Filters_Dev1.KontrastArtirma();
@@ -305,6 +362,7 @@ namespace GoruntuProje
 
         private void kenarBulmaPrewittToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 var filtre = new GoruntuProje.Filters_Dev1.KenarBulmaPrewitt();
@@ -318,6 +376,7 @@ namespace GoruntuProje
 
         private void genişlemeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             // Öncelikle programa yüklenmiş bir görüntü olduğundan emin ol
             if (pictureBox1.Image != null)
             {
@@ -338,6 +397,7 @@ namespace GoruntuProje
 
         private void aşınmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 Bitmap kaynak = new Bitmap(pictureBox1.Image);
@@ -352,6 +412,7 @@ namespace GoruntuProje
 
         private void açmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 Bitmap kaynak = new Bitmap(pictureBox1.Image);
@@ -366,6 +427,7 @@ namespace GoruntuProje
 
         private void kapamaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 Bitmap kaynak = new Bitmap(pictureBox1.Image);
@@ -380,6 +442,7 @@ namespace GoruntuProje
 
         private void görüntüKırpmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HistogramGoster(false);
             if (pictureBox1.Image != null)
             {
                 Bitmap kaynak = new Bitmap(pictureBox1.Image);
