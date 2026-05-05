@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace GoruntuProje.Filters_Dev3
 {
-      // Histogram Germe (Kontrast Genişletme)
-      // Amaç: Görüntüdeki piksel değerlerini 0-255 aralığına yayarak kontrastı artırmak
+    // Histogram Germe (Kontrast Genişletme)
+    // Amaç: Görüntüdeki piksel değerlerini 0-255 aralığına yayarak kontrastı artırmak
     public class HistogramGerme : IImageFilter
     {
         public Bitmap ApplyFilter(Bitmap girisResmi)
@@ -94,3 +94,4 @@ namespace GoruntuProje.Filters_Dev3
         }
     }
 }
+    

@@ -380,7 +380,6 @@
             // 
             // pictureBoxHistOrijinal
             // 
-            this.pictureBoxHistOrijinal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxHistOrijinal.Location = new System.Drawing.Point(39, 517);
             this.pictureBoxHistOrijinal.Name = "pictureBoxHistOrijinal";
             this.pictureBoxHistOrijinal.Size = new System.Drawing.Size(457, 99);
@@ -389,7 +388,6 @@
             // 
             // pictureBoxHistSonuc
             // 
-            this.pictureBoxHistSonuc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxHistSonuc.Location = new System.Drawing.Point(566, 517);
             this.pictureBoxHistSonuc.Name = "pictureBoxHistSonuc";
             this.pictureBoxHistSonuc.Size = new System.Drawing.Size(457, 99);
