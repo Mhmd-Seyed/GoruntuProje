@@ -1,38 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-using GoruntuProje.Core;
+﻿using GoruntuProje.Core;
+using System;
 using System.Drawing;
 
 namespace GoruntuProje.Filters_Dev4
 {
     // Aritmetik Ekleme İşlemi
-    // Amaç: Görüntüdeki her pikselin RGB değerlerine sabit bir değer ekleyerek görüntüyü parlaklaştırmak
-    public class EklemeIslemi : IImageFilter
+    // Amaç: İki görüntünün aynı konumdaki piksellerini toplayarak yeni bir görüntü oluşturmak.
+    public class EklemeIslemi : IImageFilter2
     {
-        public Bitmap ApplyFilter(Bitmap girisResmi)
+        public Bitmap ApplyFilter(Bitmap birinciResim, Bitmap ikinciResim)
         {
-            Bitmap cikisResmi = new Bitmap(girisResmi.Width, girisResmi.Height);
+            int genislik = Math.Min(birinciResim.Width, ikinciResim.Width);
+            int yukseklik = Math.Min(birinciResim.Height, ikinciResim.Height);
 
-            // Eklenecek sabit değer
-            // Bu değer arttıkça görüntü daha parlak olur
-            int eklenecekDeger = 80;//büyük değer seçtim ki görüntünün parlaklığı artsın.
+            Bitmap cikisResmi = new Bitmap(genislik, yukseklik);
 
-            for (int y = 0; y < girisResmi.Height; y++)
+            for (int y = 0; y < yukseklik; y++)
             {
-                for (int x = 0; x < girisResmi.Width; x++)
+                for (int x = 0; x < genislik; x++)
                 {
-                    Color piksel = girisResmi.GetPixel(x, y);
+                    Color piksel1 = birinciResim.GetPixel(x, y);
+                    Color piksel2 = ikinciResim.GetPixel(x, y);
 
-                    int yeniKirmizi = piksel.R + eklenecekDeger;
-                    int yeniYesil = piksel.G + eklenecekDeger;
-                    int yeniMavi = piksel.B + eklenecekDeger;
+                    int yeniKirmizi = piksel1.R + piksel2.R;
+                    int yeniYesil = piksel1.G + piksel2.G;
+                    int yeniMavi = piksel1.B + piksel2.B;
 
-                    // RGB değerleri 255'i geçemez
                     if (yeniKirmizi > 255)
                         yeniKirmizi = 255;
 

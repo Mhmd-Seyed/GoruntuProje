@@ -226,40 +226,54 @@ namespace GoruntuProje
 
         private void eklemeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HistogramGoster(false);
             if (pictureBox1.Image == null)
             {
-                MessageBox.Show("Lütfen önce bir görüntü yükleyiniz.");
+                MessageBox.Show("Lütfen önce birinci görüntüyü yükleyiniz.");
                 return;
             }
 
-            Bitmap girisResmi = new Bitmap(pictureBox1.Image);
+            OpenFileDialog ikinciResimSec = new OpenFileDialog();
+            ikinciResimSec.Title = "İkinci resmi seçiniz";
+            ikinciResimSec.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp";
 
-            EklemeIslemi eklemeIslemi = new EklemeIslemi();
+            if (ikinciResimSec.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap birinciResim = new Bitmap(pictureBox1.Image);
+                Bitmap ikinciResim = new Bitmap(ikinciResimSec.FileName);
 
-            Bitmap cikisResmi = eklemeIslemi.ApplyFilter(girisResmi);
+                EklemeIslemi eklemeIslemi = new EklemeIslemi();
 
-            pictureBox2.Image = cikisResmi;
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+                Bitmap cikisResmi = eklemeIslemi.ApplyFilter(birinciResim, ikinciResim);
+
+                pictureBox2.Image = cikisResmi;
+                pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            }
         }
 
         private void bolmeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HistogramGoster(false);
             if (pictureBox1.Image == null)
             {
-                MessageBox.Show("Lütfen önce bir görüntü yükleyiniz.");
+                MessageBox.Show("Lütfen önce birinci görüntüyü yükleyiniz.");
                 return;
             }
 
-            Bitmap girisResmi = new Bitmap(pictureBox1.Image);
+            OpenFileDialog ikinciResimSec = new OpenFileDialog();
+            ikinciResimSec.Title = "İkinci resmi seçiniz";
+            ikinciResimSec.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp";
 
-            BolmeIslemi bolmeIslemi = new BolmeIslemi();
+            if (ikinciResimSec.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap birinciResim = new Bitmap(pictureBox1.Image);
+                Bitmap ikinciResim = new Bitmap(ikinciResimSec.FileName);
 
-            Bitmap cikisResmi = bolmeIslemi.ApplyFilter(girisResmi);
+                BolmeIslemi bolmeIslemi = new BolmeIslemi();
 
-            pictureBox2.Image = cikisResmi;
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+                Bitmap cikisResmi = bolmeIslemi.ApplyFilter(birinciResim, ikinciResim);
+
+                pictureBox2.Image = cikisResmi;
+                pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            }
         }
 
         private void görüntüDöndürmeToolStripMenuItem_Click(object sender, EventArgs e)

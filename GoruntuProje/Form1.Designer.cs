@@ -286,14 +286,14 @@
             // eklemeToolStripMenuItem
             // 
             this.eklemeToolStripMenuItem.Name = "eklemeToolStripMenuItem";
-            this.eklemeToolStripMenuItem.Size = new System.Drawing.Size(140, 26);
+            this.eklemeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.eklemeToolStripMenuItem.Text = "ekleme";
             this.eklemeToolStripMenuItem.Click += new System.EventHandler(this.eklemeToolStripMenuItem_Click);
             // 
             // bolmeToolStripMenuItem
             // 
             this.bolmeToolStripMenuItem.Name = "bolmeToolStripMenuItem";
-            this.bolmeToolStripMenuItem.Size = new System.Drawing.Size(140, 26);
+            this.bolmeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.bolmeToolStripMenuItem.Text = "bolme";
             this.bolmeToolStripMenuItem.Click += new System.EventHandler(this.bolmeToolStripMenuItem_Click);
             // 

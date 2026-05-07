@@ -1,35 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using GoruntuProje.Core;
+﻿using GoruntuProje.Core;
+using System;
 using System.Drawing;
 
 namespace GoruntuProje.Filters_Dev4
 {
     // Aritmetik Bölme İşlemi
-    // Amaç: Görüntüdeki her pikselin RGB değerlerini sabit bir sayıya bölerek görüntüyü koyulaştırmak
-    public class BolmeIslemi : IImageFilter
+    // Amaç: İki görüntünün aynı konumdaki piksellerini birbirine bölerek yeni bir görüntü oluşturmak.
+    public class BolmeIslemi : IImageFilter2
     {
-        public Bitmap ApplyFilter(Bitmap girisResmi)
+        public Bitmap ApplyFilter(Bitmap birinciResim, Bitmap ikinciResim)
         {
-            Bitmap cikisResmi = new Bitmap(girisResmi.Width, girisResmi.Height);
+            int genislik = Math.Min(birinciResim.Width, ikinciResim.Width);
+            int yukseklik = Math.Min(birinciResim.Height, ikinciResim.Height);
 
-            // Bölünecek sabit değer
-            // Bu değer arttıkça görüntü daha koyu olur
-            int bolmeDegeri = 4; //koyulaşsın diye 4 seçtim
+            Bitmap cikisResmi = new Bitmap(genislik, yukseklik);
 
-            for (int y = 0; y < girisResmi.Height; y++)
+            for (int y = 0; y < yukseklik; y++)
             {
-                for (int x = 0; x < girisResmi.Width; x++)
+                for (int x = 0; x < genislik; x++)
                 {
-                    Color piksel = girisResmi.GetPixel(x, y);
+                    Color piksel1 = birinciResim.GetPixel(x, y);
+                    Color piksel2 = ikinciResim.GetPixel(x, y);
 
-                    int yeniKirmizi = piksel.R / bolmeDegeri;
-                    int yeniYesil = piksel.G / bolmeDegeri;
-                    int yeniMavi = piksel.B / bolmeDegeri;
+                    int yeniKirmizi;
+                    int yeniYesil;
+                    int yeniMavi;
+
+                    // 0'a bölme hatasını önlemek için kontrol
+                    if (piksel2.R == 0)
+                        yeniKirmizi = 0;
+                    else
+                        yeniKirmizi = piksel1.R / piksel2.R;
+
+                    if (piksel2.G == 0)
+                        yeniYesil = 0;
+                    else
+                        yeniYesil = piksel1.G / piksel2.G;
+
+                    if (piksel2.B == 0)
+                        yeniMavi = 0;
+                    else
+                        yeniMavi = piksel1.B / piksel2.B;
 
                     cikisResmi.SetPixel(x, y, Color.FromArgb(yeniKirmizi, yeniYesil, yeniMavi));
                 }
