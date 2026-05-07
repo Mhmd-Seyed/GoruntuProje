@@ -13,6 +13,10 @@ namespace GoruntuProje
 {
     public partial class Form1 : Form
     {
+        // Fare ile çizim yapmak için gerekli değişkenler
+        bool cizimYapiyorMu = false;
+        Point baslangicNoktasi;
+        Rectangle kesimDortgeni;
         public Form1()
         {
             InitializeComponent();
@@ -456,16 +460,93 @@ namespace GoruntuProje
 
         private void görüntüKırpmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HistogramGoster(false);
-            if (pictureBox1.Image != null)
+            // Görüntü var mı ve fare ile bir alan seçilmiş mi kontrol et
+            if (pictureBox1.Image != null && kesimDortgeni.Width > 0 && kesimDortgeni.Height > 0)
             {
                 Bitmap kaynak = new Bitmap(pictureBox1.Image);
+
                 GoruntuProje.Filters_Leader.KirpmaFiltresi kirpma = new GoruntuProje.Filters_Leader.KirpmaFiltresi();
+
+                // Çizdiğimiz dikdörtgeni filtreye gönderiyoruz
+                kirpma.SeciliAlan = kesimDortgeni;
+
+                // Filtreyi uygula ve sonucu göster
                 pictureBox2.Image = kirpma.ApplyFilter(kaynak);
+
+                // İşlem bitince kırmızı çizgiyi temizle
+                kesimDortgeni = new Rectangle();
+                pictureBox1.Invalidate();
             }
             else
             {
-                MessageBox.Show("Lütfen önce bir resim seçin!");
+                MessageBox.Show("Lütfen önce fare ile orijinal görüntü üzerinden kırpılacak alanı seçin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (pictureBox1.Image != null && e.Button == MouseButtons.Left)
+            {
+                cizimYapiyorMu = true;
+                baslangicNoktasi = e.Location;
+            }
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (cizimYapiyorMu)
+            {
+                // Fare sürüklendikçe dikdörtgenin boyutlarını hesapla
+                int x = Math.Min(baslangicNoktasi.X, e.X);
+                int y = Math.Min(baslangicNoktasi.Y, e.Y);
+                int width = Math.Abs(e.X - baslangicNoktasi.X);
+                int height = Math.Abs(e.Y - baslangicNoktasi.Y);
+
+                kesimDortgeni = new Rectangle(x, y, width, height);
+
+                // --- Otomatik Bilgi Hesaplama Kısmı ---
+                if (pictureBox1.Image != null)
+                {
+                    int imgW = pictureBox1.Image.Width;
+                    int imgH = pictureBox1.Image.Height;
+
+                    // Kenarlardan ne kadar kesiliyor? (Piksel bazında hesaplama)
+                    int kesilenSol = x;
+                    int kesilenUst = y;
+                    int kesilenSag = imgW - (x + width);
+                    int kesilenAlt = imgH - (y + height);
+
+                    // Bilgileri ekrana yazdır (Türkçe formatta)
+                    lblCropInfo.Text = $"--- Kesim Bilgileri ---\n" +
+                                       $"Başlangıç: ({x}, {y})\n" +
+                                       $"Boyut: {width}x{height} px\n" +
+                                       $"-----------------------\n" +
+                                       $"Soldan Kesilen: {kesilenSol} px\n" +
+                                       $"Sağdan Kesilen: {kesilenSag} px\n" +
+                                       $"Üstten Kesilen: {kesilenUst} px\n" +
+                                       $"Alttan Kesilen: {kesilenAlt} px";
+                }
+
+                pictureBox1.Invalidate(); // Çizimi güncelle
+            }
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            cizimYapiyorMu = false;
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            if (kesimDortgeni != null && kesimDortgeni.Width > 0 && kesimDortgeni.Height > 0)
+            {
+                // Kırmızı ve kesik çizgili bir kalem (Pen) oluştur
+                Pen kalem = new Pen(Color.Red, 2);
+                kalem.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+
+                // Dikdörtgeni çiz
+                e.Graphics.DrawRectangle(kalem, kesimDortgeni);
             }
         }
     }

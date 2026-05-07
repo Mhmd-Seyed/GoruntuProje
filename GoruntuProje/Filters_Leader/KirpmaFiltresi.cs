@@ -1,35 +1,30 @@
 ﻿using GoruntuProje.Core;
+using System;
 using System.Drawing;
 
 namespace GoruntuProje.Filters_Leader
 {
     public class KirpmaFiltresi : IImageFilter
     {
+        // Kullanıcının fare ile seçtiği alan (Dikdörtgen)
+        public Rectangle SeciliAlan { get; set; }
+
         public Bitmap ApplyFilter(Bitmap kaynakGoruntu)
         {
-            // Görüntünün ortasından daha dar bir alanı (%33) kırpan yaklaşım
+            // Eğer alan seçilmediyse orijinal görüntüyü döndür
+            if (SeciliAlan.Width == 0 || SeciliAlan.Height == 0)
+                return kaynakGoruntu;
 
-            // 1. Kırpılacak çerçevenin başlangıç koordinatlarını ve yeni boyutları hesapla
-            int baslangicX = kaynakGoruntu.Width / 3;    // Soldan %33 boşluk bırak
-            int baslangicY = kaynakGoruntu.Height / 3;   // Yukarıdan %33 boşluk bırak
-            int yeniGenislik = kaynakGoruntu.Width / 3;  // Orijinal genişliğin 3'te 1'ini al
-            int yeniYukseklik = kaynakGoruntu.Height / 3;// Orijinal yüksekliğin 3'te 1'ini al
+            // Görüntü sınırlarını aşmamak için güvenli koordinatlar hesapla
+            int x = Math.Max(0, SeciliAlan.X);
+            int y = Math.Max(0, SeciliAlan.Y);
+            int genislik = Math.Min(kaynakGoruntu.Width - x, SeciliAlan.Width);
+            int yukseklik = Math.Min(kaynakGoruntu.Height - y, SeciliAlan.Height);
 
-            // 2. Hesaplanmış yeni boyutlarda boş bir görüntü (Bitmap) oluştur
-            Bitmap kirpilmisGoruntu = new Bitmap(yeniGenislik, yeniYukseklik);
+            Rectangle guvenliAlan = new Rectangle(x, y, genislik, yukseklik);
 
-            // 3. Pikselleri yeni görüntüye taşı (Geometrik öteleme / Kaydırma)
-            for (int y = 0; y < yeniYukseklik; y++)
-            {
-                for (int x = 0; x < yeniGenislik; x++)
-                {
-                    // Orijinal görüntüden ötekilenmiş (offset) pikseli al
-                    Color piksel = kaynakGoruntu.GetPixel(x + baslangicX, y + baslangicY);
-
-                    // Yeni görüntünün (0,0) noktasından başlayarak yerleştir
-                    kirpilmisGoruntu.SetPixel(x, y, piksel);
-                }
-            }
+            // C#'ın yerleşik Clone metodu ile seçili alanı pikselleriyle birlikte kesip alıyoruz
+            Bitmap kirpilmisGoruntu = kaynakGoruntu.Clone(guvenliAlan, kaynakGoruntu.PixelFormat);
 
             return kirpilmisGoruntu;
         }
