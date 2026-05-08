@@ -467,8 +467,8 @@ namespace GoruntuProje
 
                 GoruntuProje.Filters_Leader.KirpmaFiltresi kirpma = new GoruntuProje.Filters_Leader.KirpmaFiltresi();
 
-                // Çizdiğimiz dikdörtgeni filtreye gönderiyoruz
-                kirpma.SeciliAlan = kesimDortgeni;
+                // Farenin çizdiği alanı, gerçek piksel koordinatlarına çevirip filtreye gönderiyoruz
+                kirpma.SeciliAlan = GercekKoordinatlariHesapla(pictureBox1, kesimDortgeni);
 
                 // Filtreyi uygula ve sonucu göster
                 pictureBox2.Image = kirpma.ApplyFilter(kaynak);
@@ -548,6 +548,45 @@ namespace GoruntuProje
                 // Dikdörtgeni çiz
                 e.Graphics.DrawRectangle(kalem, kesimDortgeni);
             }
+        }
+
+        // PictureBox üzerindeki fare koordinatlarını, gerçek resmin piksel koordinatlarına dönüştüren metot
+        private Rectangle GercekKoordinatlariHesapla(PictureBox pb, Rectangle secilenAlan)
+        {
+            if (pb.Image == null) return secilenAlan;
+
+            // 1. Görüntünün ve PictureBox'ın boyutlarını al
+            int pGenislik = pb.ClientSize.Width;
+            int pYukseklik = pb.ClientSize.Height;
+            int iGenislik = pb.Image.Width;
+            int iYukseklik = pb.Image.Height;
+
+            // 2. Zoom (Yakınlaştırma) oranını hesapla
+            float oranX = (float)pGenislik / iGenislik;
+            float oranY = (float)pYukseklik / iYukseklik;
+            float zoomOrani = Math.Min(oranX, oranY);
+
+            // 3. Görüntünün ekranda kapladığı gerçek alanı hesapla
+            int gosterilenGenislik = (int)(iGenislik * zoomOrani);
+            int gosterilenYukseklik = (int)(iYukseklik * zoomOrani);
+
+            // 4. Zoom modunun eklediği boşlukları (offset) hesapla
+            int offsetX = (pGenislik - gosterilenGenislik) / 2;
+            int offsetY = (pYukseklik - gosterilenYukseklik) / 2;
+
+            // 5. Farenin çizdiği dikdörtgeni gerçek piksel koordinatlarına dönüştür
+            int gercekX = (int)((secilenAlan.X - offsetX) / zoomOrani);
+            int gercekY = (int)((secilenAlan.Y - offsetY) / zoomOrani);
+            int gercekGenislik = (int)(secilenAlan.Width / zoomOrani);
+            int gercekYukseklik = (int)(secilenAlan.Height / zoomOrani);
+
+            // Sınırları aşmamak için güvenlik kontrolü (Clamping)
+            gercekX = Math.Max(0, gercekX);
+            gercekY = Math.Max(0, gercekY);
+            if (gercekX + gercekGenislik > iGenislik) gercekGenislik = iGenislik - gercekX;
+            if (gercekY + gercekYukseklik > iYukseklik) gercekYukseklik = iYukseklik - gercekY;
+
+            return new Rectangle(gercekX, gercekY, gercekGenislik, gercekYukseklik);
         }
     }
 
